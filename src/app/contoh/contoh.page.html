@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<h2 text-center (click)="open(0)" (ngClass)="{'active' : state == 0}">Buah buahan</h2>
+			</ion-col>
+			<ion-col>
+				<h2 text-center (click)="open(1)" (ngClass)="{'active' : state == 1}">ikan</h2>
+			</ion-col>
+			<ion-col>
+				<h2 text-center (click)="open(2)" (ngClass)="{'active' : state == 2}">sayur</h2>
+			</ion-col>
+		</ion-row>
+
+		<ng-container *ngIf="state == 0">	
+			<ion-row>
+
+				<ion-col size="12" size-md="4" *ngFor="let item of buah">
+					<ion-list>
+					<ion-card>
+    					<ion-card-header>
+        					<ion-card-title>buah</ion-card-title>
+    					</ion-card-header>
+    					<ion-card-content>
+        						
+									<div> {{item.nama}}</div>
+									<div> {{item.rasa}}</div>
+									<ion-button expand="block" color="success" (click)="add(item)"> Add</ion-button>	
+									
+    					</ion-card-content>
+					</ion-card>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ng-container>
+		
+			<ng-container *ngIf="state == 1">	
+			<ion-row>
+
+				<ion-col size="4" *ngFor="let item of ikan">
+					<ion-list>
+					<ion-card>
+    					<ion-card-header>
+        					<ion-card-title>Ikan</ion-card-title>
+    					</ion-card-header>
+    					<ion-card-content>
+        						
+									<div> {{item.nama}}</div>
+									<div> {{item.rasa}}</div>
+									<ion-button expand="block" color="danger" shape="round" fill="outline" (click)="add(item)"> Add</ion-button>	
+									
+    					</ion-card-content>
+					</ion-card>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ng-container>
+
+
+		<ng-container *ngIf="state == 2">	
+			<ion-row>
+
+				<ion-col size="4" *ngFor="let item of sayur">
+					<ion-list>
+					<ion-card>
+    					<ion-card-header>
+        					<ion-card-title>sayuran</ion-card-title>
+    					</ion-card-header>
+    					<ion-card-content>
+        						
+									<div> {{item.nama}}</div>
+									<div> {{item.rasa}}</div>
+									<ion-button expand="block" color="tertiary" (click)="add(item)"> Add</ion-button>	
+									
+    					</ion-card-content>
+					</ion-card>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ng-container>
+
+	</ion-grid>
+
+	<h1 text-center>Cart</h1>
+<div>
+	<ion-row *ngFor="let item of cart; index as idx">
+		<ion-col size="3">
+		{{idx+1}}.{{item.nama | addDot}}	
+		</ion-col>
+		<ion-col size="3">
+			{{item.harga | currency: 'Rp ' : 'symbol'}}
+		</ion-col>
+		<ion-col size="3">
+			{{item.rasa}}
+		</ion-col>
+		<ion-col size="3">
+			<ion-button expand="round" color="danger" (click)="delete(item)">Delete</ion-button>
+		</ion-col>
+	</ion-row>
+	<ion-col size="4">
+			<h2>Total {{total | currency: 'Rp ' : 'symbol' }}</h2>
+		</ion-col>
+
+</div>
+<div text-center *ngIf="cart.length < 1 ">
+	No Items
+</div>
+
+
+</ion-content>

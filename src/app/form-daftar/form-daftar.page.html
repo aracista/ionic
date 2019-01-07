@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form Daftar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-item>
+  <ion-label  position="floating">Nama</ion-label>
+  <ion-input [(ngModel)]="formDaftar.name"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating">No KTP</ion-label>
+  <ion-input [(ngModel)]="formDaftar.idNumb"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Alamat</ion-label>
+  <ion-input [(ngModel)]="formDaftar.address"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">No HP</ion-label>
+  <ion-input [(ngModel)]="formDaftar.mobileNumber"></ion-input>
+</ion-item>
+
+  <ion-button expand="full" margin-top (click)="submitRegister()">Daftar</ion-button>
+  <div>Nama : {{formDaftar.name}}</div>
+  <div>No KTP : {{formDaftar.idNumb}}</div>
+  <div>Alamat : {{formDaftar.address}}</div>
+  <div>No HP : {{formDaftar.mobileNumber}}</div>
+</ion-content>
