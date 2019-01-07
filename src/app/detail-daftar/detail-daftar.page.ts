@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-detail-daftar',
@@ -8,9 +9,18 @@ import { Router } from '@angular/router';
 })
 export class DetailDaftarPage implements OnInit {
 
-  constructor(public router: Router) { }
+	data: any = {};
+
+  constructor(public storage: Storage) {
+   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(){
+  	this.storage.get('formDaftar').then((valueFormDaftar) => {
+    this.data = valueFormDaftar;
+  	});
   }
 
 }

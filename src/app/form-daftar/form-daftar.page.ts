@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-form-daftar',
@@ -15,13 +16,14 @@ export class FormDaftarPage implements OnInit {
 		mobileNumber: ''
 	}
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public storage: Storage) { }
 
   ngOnInit() {
   }
 
 	submitRegister(){
-		this.router.navigate(['/detail-daftar', {data: this.formDaftar}]);
+		this.storage.set('formDaftar', this.formDaftar);
+		this.router.navigate(['/detail-daftar']);
 
 	}
 }
